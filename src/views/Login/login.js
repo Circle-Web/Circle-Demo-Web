@@ -21,7 +21,7 @@ const LoadingIcon = () => {
 
 const LOGIN = {
   loginText: "登录环信超级社区",
-  usernamePlaceHolder: "请输入您的手机号",
+  usernamePlaceHolder: "请输入您的账号",
   passwordPlaceHolder: "请输入密码",
   login: "登录"
 };
@@ -57,11 +57,11 @@ function Login(props) {
   );
   const handleInputChange = (prop) => (event) => {
     let value = event.target.value;
-    if (prop === "username") {
-      value = value.replace(/[^\d]/g, "");
-    } else if (prop === "agree") {
-      value = !inputValue.agree;
-    }
+    // if (prop === "username") {
+    //   value = value.replace(/[^\d]/g, "");
+    // } else if (prop === "agree") {
+    //   value = !inputValue.agree;
+    // }
     setInputValue({ ...inputValue, [prop]: value });
   };
 
@@ -74,10 +74,12 @@ function Login(props) {
       // inputValue.password.replace(/(^\s*)|(\s*$)/g, "") === ""
       message.warn({ content: "请输入用户名！" });
       return;
-    } else if (!/^1\d{10}$/.test(inputValue.username)) {
-      message.warn({ content: "请输入合法手机号！" });
-      return;
-    } else if (!inputValue.agree) {
+    }
+    //  else if (!/^1\d{10}$/.test(inputValue.username)) {
+    //   message.warn({ content: "请输入合法手机号！" });
+    //   return;
+    // } 
+    else if (!inputValue.agree) {
       message.warn({
         content: (
           <span>
@@ -235,7 +237,7 @@ function Login(props) {
           <p className={style.loginTips}>未注册手机号登陆成功后将自动注册。</p>
         </div>
       </div>
-      <div className={style.version}>© 2022 环信</div>
+      {/* <div className={style.version}>© 2022 环信</div> */}
     </div>
   );
 }

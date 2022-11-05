@@ -5,6 +5,7 @@ import Icon from "@/components/Icon";
 import { Popover, Menu, Tooltip } from "antd";
 import { USER_ROLE } from "@/consts";
 import ThreadList from "@/views/Thread/components/ThreadList";
+import PluginList from './pluginList'
 import WebIM from "@/utils/WebIM";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +37,13 @@ const ChannelHeader = (props) => {
   const handleVisibleThreadListChange = (newVisible) => {
     setVisibleThread(newVisible);
   };
+
+  /** 操作插件商店 */
+  const [visiblePlugin, setVisiblePlugin] = useState(false)
+
+  const handleVisiblePluginListChange = (newVisible) => {
+    setVisiblePlugin(newVisible)
+  }
 
   useEffect(() => {
     getChannelInfo({
@@ -116,6 +124,25 @@ const ChannelHeader = (props) => {
             items={getChannelItems()}
           ></Menu>
         )}
+        <Popover
+          placement="bottomRight"
+          content={
+            <PluginList
+              onClose={hideThreadList}
+              onHandleOperation={onHandleOperation}
+            />
+          }
+          trigger="click"
+          visible={visiblePlugin}
+          onVisibleChange={handleVisiblePluginListChange}
+          overlayClassName={s.popover}
+        >
+          <Tooltip title="插件商店" overlayClassName="toolTip">
+            <span>
+              <Icon iconClass={s.icon} size="24px" name="hashtag_message" />
+            </span>
+          </Tooltip>
+        </Popover>
 
       </div>
     </HeaderWrap >

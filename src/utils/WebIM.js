@@ -2,7 +2,7 @@
 import WebIM from "easemob-websdk";
 
 WebIM.conn = new WebIM.connection({
-  appKey: "your appKey",
+  appKey: process.env.REACT_APP_WEB_IM_APP_KEY,
   useOwnUploadFun: true
 });
 

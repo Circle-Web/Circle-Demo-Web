@@ -24,7 +24,7 @@ const Chat = (props) => {
   }, [userId, chatMap]);
 
   const loadMoreData = () => {
-    getHistoryMsg({ cursor: messageInfo?.cursor });
+    // getHistoryMsg({ cursor: messageInfo?.cursor });
   };
 
   const getHistoryMsg = ({ cursor = "" }) => {
@@ -59,7 +59,7 @@ const Chat = (props) => {
   useEffect(() => {
     // 切换channel 关闭thread面板
     handleThreadPanel(false);
-    getHistoryMsg({ cursor: "" });
+    // getHistoryMsg({ cursor: "" });
     if (conversationList.indexOf(userId) < 0) {
       conversationList.unshift(userId)
       setConversationList(conversationList)

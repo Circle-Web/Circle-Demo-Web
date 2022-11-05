@@ -188,7 +188,7 @@ const Channel = (props) => {
     handleThreadPanel(false);
     //清空thread数据
     setThreadInfo({});
-    getHistoryMsg({ cursor: "" });
+    // getHistoryMsg({ cursor: "" });
   }, [channelId]);
 
   //消息操作
@@ -260,7 +260,7 @@ const Channel = (props) => {
   };
 
   const loadMoreData = () => {
-    getHistoryMsg({ cursor: messageInfo?.cursor });
+    // getHistoryMsg({ cursor: messageInfo?.cursor });
   };
 
   useEffect(() => {

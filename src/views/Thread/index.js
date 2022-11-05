@@ -9,7 +9,7 @@ import MessageLeft from "@/components/MessageLeft";
 import { CHAT_TYPE, MESSAGE_ITEM_SOURCE } from "@/consts";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { getThreadHistoryMessage } from "@/utils/common"
+// import { getThreadHistoryMessage } from "@/utils/common"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { recallMessage } from "@/utils/common";
 
@@ -29,13 +29,13 @@ const ThreadPanel = (props) => {
             dom.scrollTop = 0;
         }
         if (currentThreadInfo?.id && currentThreadInfo.source !== 'notify') {
-            getThreadHistoryMessage(currentThreadInfo.id)
+            // getThreadHistoryMessage(currentThreadInfo.id)
         }
     }, [currentThreadInfo?.id])
     //滚动加载
     const scrollThreadEl = useRef(null);
     const loadMoreData = () => {
-        getThreadHistoryMessage(currentThreadInfo.id, true)
+        // getThreadHistoryMessage(currentThreadInfo.id, true)
     }
     //收到新消息滚动（滚动条滚动前提：没有历史记录）
     useEffect(() => {

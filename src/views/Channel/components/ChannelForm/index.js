@@ -134,7 +134,7 @@ const ChannelForm = forwardRef((props, ref) => {
             私密频道
           </span>
           <Switch
-            disabled={isEdit ? true : false}
+            disabled={isEdit ? false : true}
             checked={isPrivate}
             onChange={(e) => {
               setIsPrivate(e);

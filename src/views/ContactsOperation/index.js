@@ -109,10 +109,12 @@ const ContactsOperation = (props) => {
     const addContact = () => {
         if (searchContact === "") {
             return
-        } else if (!/^1\d{10}$/.test(searchContact)) {
-            message.warn({ content: "请输入合法手机号！" });
-            return;
-        } else if (searchContact === WebIM.conn.user) {
+        }
+        //  else if (!/^1\d{10}$/.test(searchContact)) {
+        //     message.warn({ content: "请输入合法手机号！" });
+        //     return;
+        // }
+         else if (searchContact === WebIM.conn.user) {
             message.warn({ content: "不可以添加自己为好友哦" });
             setSearchContact("");
             return
