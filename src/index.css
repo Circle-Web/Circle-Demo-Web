@@ -16,11 +16,12 @@ code {
 }
 
 
-.emoji-plugin__stop-body {
+.emoji-plugin__shop-body {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 20px;
   z-index: 10000;
   margin: 0;
   border: 0;
+  background-image: url(./assets/images/iframe_loading.webp);
 }

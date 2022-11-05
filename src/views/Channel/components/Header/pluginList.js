@@ -8,32 +8,9 @@ import AvatarInfo from "@/components/AvatarInfo";
 import CloseIcon from "@/components/CloseIcon";
 import AppLogo from "@/assets/images/app_icon.png"
 import ChannelPlus from "@/assets/images/channelPlus.png"
+import {openPlugin} from '@/components/Plugin/index'
 
-const SCROLL_WARP_ID = "threadListScrollId";
-const LIMIT = 20;
 const PLUGIN_STOP_ID = '__plugin__shop__id__'
-
-const iframeMap = new Map()
-
-const openPlugin = ({url: src, setting}) => {
-    /**
-     * @type {HTMLIFrameElement}
-     */
-    const originIframe = iframeMap.get(src)
-    if (originIframe) {
-        originIframe.focus()
-        return
-    }
-
-    const iframe = document.createElement('iframe')
-    const root = document.querySelector('body')
-    iframe.classList.add('emoji-plugin__stop-body')
-    iframe.setAttribute('src', src)
-    iframe.style.width = setting?.width || '320px'
-    iframe.style.height = setting?.height || '400px'
-    root.appendChild(iframe)
-    iframeMap.set(src, iframe)
-}
 
 const PluginList = (props) => {
     const { serverRole, appUserInfo, onHandleOperation, onClose, visiblePlugin } = props;
@@ -46,10 +23,6 @@ const PluginList = (props) => {
                 logo: AppLogo,
                 name: '声网',
                 url: 'https://www.agora.io/cn',
-                setting: {
-                    width: '320px',
-                    height: '400px'
-                },
                 id: 1
             },
             {
@@ -73,6 +46,7 @@ const PluginList = (props) => {
         } else {
             /** 打开插件 */
             openPlugin(item)
+            onClose(false)
         }
     }
 

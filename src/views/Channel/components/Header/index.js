@@ -128,7 +128,7 @@ const ChannelHeader = (props) => {
           placement="bottomRight"
           content={
             <PluginList
-              onClose={hideThreadList}
+              onClose={handleVisiblePluginListChange}
               onHandleOperation={onHandleOperation}
             />
           }
