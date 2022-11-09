@@ -1,10 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import s from "./plugin.module.less";
-import Icon from "@/components/Icon";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import WebIM from "@/utils/WebIM";
-import AvatarInfo from "@/components/AvatarInfo";
 import CloseIcon from "@/components/CloseIcon";
 import AppLogo from "@/assets/images/app_icon.png"
 import ChannelPlus from "@/assets/images/channelPlus.png"
@@ -22,7 +19,7 @@ const PluginList = (props) => {
             {
                 logo: AppLogo,
                 name: '声网',
-                url: 'https://www.agora.io/cn',
+                url: 'http://localhost:5173/',
                 id: 1
             },
             {
