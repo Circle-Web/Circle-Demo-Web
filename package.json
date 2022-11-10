@@ -163,5 +163,6 @@
   },
   "engines": {
     "node": ">= 16"
-  }
+  },
+  "packageManager": "pnpm"
 }
