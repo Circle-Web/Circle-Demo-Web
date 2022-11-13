@@ -59,9 +59,10 @@ function Login(props) {
     let value = event.target.value;
     // if (prop === "username") {
     //   value = value.replace(/[^\d]/g, "");
-    // } else if (prop === "agree") {
-    //   value = !inputValue.agree;
-    // }
+    // } else
+    if (prop === "agree") {
+      value = !inputValue.agree;
+    }
     setInputValue({ ...inputValue, [prop]: value });
   };
 
