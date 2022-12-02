@@ -1,29 +1,18 @@
-import WebIM from "./WebIM";
-import store from "../store";
-import {
-  getUsersInfo,
-  getMessageFromId,
-  getConfirmModalConf,
-  insertServerList,
-  insertChannelList,
-  addLocalThread
-} from "@/utils/common";
-import { message, Modal } from "antd";
 import InviteModal from "@/components/InviteModal";
 import {
-  updateServerDetail,
-  createMsg,
-  deliverMsg,
-  updateLocalChannelDetail,
-  deleteLocalChannel
-} from "./common";
-import {
-  MULTI_DEVICE_EVENT,
-  CHAT_TYPE,
   ACCEPT_INVITE_TYPE,
-  CHANNEL_EVENT,
-  REACTION_TYPE
+  CHANNEL_EVENT, CHAT_TYPE, CUSTOM_MSG_TYPE, MULTI_DEVICE_EVENT, REACTION_TYPE
 } from "@/consts";
+import {
+  addLocalThread, getConfirmModalConf, getMessageFromId, getUsersInfo, insertChannelList, insertServerList
+} from "@/utils/common";
+import { message, Modal } from "antd";
+import store from "../store";
+import {
+  createMsg, deleteLocalChannel, deliverMsg,
+  updateLocalChannelDetail, updateServerDetail
+} from "./common";
+import WebIM from "./WebIM";
 
 const { dispatch, getState } = store;
 export default function initListener() {
@@ -125,7 +114,7 @@ export default function initListener() {
             event: CHANNEL_EVENT.destroy,
             data: e
           });
-          deleteLocalChannel(serverInfo.id, id,true);
+          deleteLocalChannel(serverInfo.id, id, true);
           break;
         case CHANNEL_EVENT.update:
           updateLocalChannelDetail("notify", serverInfo.id, e);
@@ -166,6 +155,7 @@ export default function initListener() {
                     to: id,
                     customEvent: ACCEPT_INVITE_TYPE.acceptInviteChannel,
                     customExts: {
+                      customMsgType: CUSTOM_MSG_TYPE.invite,
                       server_name: name,
                       channel_name: name
                     }
@@ -223,11 +213,11 @@ export default function initListener() {
                 ...dt,
                 muteList: dt.muteList?.length
                   ? [
-                      ...dt.muteList,
-                      {
-                        userId: to
-                      }
-                    ]
+                    ...dt.muteList,
+                    {
+                      userId: to
+                    }
+                  ]
                   : [{ userId: to }]
               }
             });
@@ -307,6 +297,7 @@ export default function initListener() {
                     to: res.data.defaultChannelId,
                     customEvent: ACCEPT_INVITE_TYPE.acceptInviteServer,
                     customExts: {
+                      customMsgType: CUSTOM_MSG_TYPE.invite,
                       server_name: name
                     }
                   });

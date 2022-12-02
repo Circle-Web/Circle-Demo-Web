@@ -1,24 +1,16 @@
-import React, { useRef, useState, memo, useEffect, useCallback } from "react";
-import ContentEditable from "react-contenteditable";
-import s from "./index.module.less";
-import { Dropdown, Menu, Upload, message } from "antd";
+import { CUSTOM_MSG_TYPE, SCROLL_WARP_ID } from "@/consts";
 import {
-  scrollToBottom,
-  convertToMessage,
-  renderHtml,
-  getEmojiHtml
+  convertToMessage, createMsg,
+  deliverMsg, formatImFile, getEmojiHtml, pasteHtmlAtCaret, renderHtml, scrollToBottom
 } from "@/utils/common";
-import { SCROLL_WARP_ID } from "@/consts";
-import {
-  createMsg,
-  deliverMsg,
-  pasteHtmlAtCaret,
-  formatImFile
-} from "@/utils/common";
-import { connect } from "react-redux";
-import Icon from "../Icon";
-import EmojiPicker from "../Emoji";
 import WebIM from "@/utils/WebIM";
+import { Dropdown, Menu, message, Upload } from "antd";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import ContentEditable from "react-contenteditable";
+import { connect } from "react-redux";
+import EmojiPicker from "../Emoji";
+import Icon from "../Icon";
+import s from "./index.module.less";
 
 const EnterKeyCode = 13;
 
@@ -150,6 +142,31 @@ const Input = (props) => {
     });
   };
 
+  // 发送打卡的卡片信息事件
+  const signIn = () => {
+    //发送消息
+    getTarget().then((target) => {
+      let msg = createMsg({
+        chatType: chatType,
+        type: "custom",
+        to: target,
+        customEvent: "",
+        customExts: {
+          customMsgType: CUSTOM_MSG_TYPE.signIn,
+          title_name: "坚持戴口罩"
+        }
+      });
+      deliverMsg(msg).then(() => {
+        insertChatMessage({
+          chatType: msg.chatType,
+          fromId: msg.to,
+          messageInfo: {
+            list: [{ ...msg, from: WebIM.conn.user }]
+          }
+        });
+      });
+    })
+  }
   const menu = (
     <Menu
       items={[
@@ -185,6 +202,15 @@ const Input = (props) => {
                 <span className="circleDropMenuOp">发送附件</span>
               </div>
             </Upload>
+          )
+        },
+        {
+          key: "signIn",
+          label: (
+            <div className="circleDropItem" onClick={signIn}>
+              <Icon name="clip" size="24px" iconClass="circleDropMenuIcon" />
+              <span className="circleDropMenuOp">打卡签到</span>
+            </div>
           )
         }
       ]}

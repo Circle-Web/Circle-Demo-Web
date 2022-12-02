@@ -1,31 +1,25 @@
-import React, { memo, useEffect, useMemo, useCallback, useRef } from "react";
-import s from "./index.module.less";
-import Header from "./components/Header";
-import { connect } from "react-redux";
-import MemberModal from "./components/MemberModal";
-import { useParams } from "react-router-dom";
-import MessageLeft from "@/components/MessageLeft";
+import Icon from "@/components/Icon";
 import Input from "@/components/Input";
+import MessageLeft from "@/components/MessageLeft";
 import {
-  CHAT_TYPE,
-  MESSAGE_ITEM_SOURCE,
-  INVITE_TYPE,
-  SCROLL_WARP_ID,
-  ACCEPT_INVITE_TYPE,
-  THREAD_PAGE_SIZE
+  ACCEPT_INVITE_TYPE, CHAT_TYPE, CUSTOM_MSG_TYPE, INVITE_TYPE, MESSAGE_ITEM_SOURCE, SCROLL_WARP_ID, THREAD_PAGE_SIZE
 } from "@/consts";
-import Thread from "../Thread";
+import {
+  createMsg,
+  deliverMsg, getThreadParentMsg,
+  recallMessage
+} from "@/utils/common";
 import WebIM from "@/utils/WebIM";
 import { message, Spin } from "antd";
-import {
-  getThreadParentMsg,
-  recallMessage,
-  createMsg,
-  deliverMsg
-} from "@/utils/common";
-import ChannelMember from "./components/ChannelMember";
-import Icon from "@/components/Icon";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
+import Thread from "../Thread";
+import ChannelMember from "./components/ChannelMember";
+import Header from "./components/Header";
+import MemberModal from "./components/MemberModal";
+import s from "./index.module.less";
 
 const PAGE_SIZE = 20;
 
@@ -135,6 +129,7 @@ const Channel = (props) => {
                 to: channelId,
                 customEvent: ACCEPT_INVITE_TYPE.acceptInviteChannel,
                 customExts: {
+                  customMsgType: CUSTOM_MSG_TYPE.invite,
                   server_name: serverInfo.name,
                   channel_name: res.data.name
                 }

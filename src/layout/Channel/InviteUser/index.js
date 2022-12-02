@@ -1,13 +1,13 @@
-import React, { memo, useEffect, useState, useCallback } from "react";
-import s from "./index.module.less";
-import { connect } from "react-redux";
-import { Modal, Input, message } from "antd";
-import MemberItem from "@/components/MemberItem";
-import WebIM from "@/utils/WebIM";
-import { getUsersInfo, createMsg, deliverMsg } from "@/utils/common";
 import Icon from "@/components/Icon";
+import MemberItem from "@/components/MemberItem";
+import { CHAT_TYPE, CUSTOM_MSG_TYPE, INVITE_TYPE } from "@/consts";
+import { createMsg, deliverMsg, getUsersInfo } from "@/utils/common";
+import WebIM from "@/utils/WebIM";
+import { Input, message, Modal } from "antd";
+import React, { memo, useCallback, useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { CHAT_TYPE, INVITE_TYPE } from "@/consts";
+import s from "./index.module.less";
 
 const invite = ({ serverId, uid, onSend, channelId, type }) => {
   if (type === INVITE_TYPE.inviteServer) {
@@ -96,6 +96,7 @@ const InviteUser = (props) => {
         to: uid,
         customEvent: INVITE_TYPE.inviteServer,
         customExts: {
+          customMsgType: CUSTOM_MSG_TYPE.invite,
           server_id: serverInfo.id,
           server_name: serverInfo.name,
           icon: serverInfo.icon,
@@ -110,6 +111,7 @@ const InviteUser = (props) => {
         to: uid,
         customEvent: INVITE_TYPE.inviteChannel,
         customExts: {
+          customMsgType: CUSTOM_MSG_TYPE.invite,
           server_id: serverInfo.id,
           server_name: serverInfo.name,
           icon: serverInfo.icon,

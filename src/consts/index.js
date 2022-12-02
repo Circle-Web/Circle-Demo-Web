@@ -49,7 +49,10 @@ const ACCEPT_INVITE_TYPE = {
   acceptInviteServer: "join_server",
   acceptInviteChannel: "join_channel"
 };
-
+const CUSTOM_MSG_TYPE = {
+  invite: 1,
+  signIn: 2
+}
 const MESSAGE_ITEM_SOURCE = {
   single: "singleChat",
   groupChat: "groupChat",
@@ -167,6 +170,7 @@ export {
   MESSAGE_ITEM_SOURCE,
   INVITE_TYPE,
   ACCEPT_INVITE_TYPE,
+  CUSTOM_MSG_TYPE,
   SCROLL_WARP_ID,
   MULTI_DEVICE_EVENT,
   CHANNEL_EVENT,

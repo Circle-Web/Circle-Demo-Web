@@ -1,13 +1,12 @@
-import s from "./index.module.less";
-import React, { memo } from "react";
-import AvatarInfo from "../AvatarInfo";
-import { CHAT_TYPE, INVITE_TYPE, ACCEPT_INVITE_TYPE } from "@/consts";
-import WebIM from "@/utils/WebIM";
-import { getConfirmModalConf, createMsg, deliverMsg, insertServerList } from "@/utils/common";
-import { message as messageWarn, Modal } from "antd";
 import InviteModal from "@/components/InviteModal";
+import { ACCEPT_INVITE_TYPE, CHAT_TYPE, CUSTOM_MSG_TYPE, INVITE_TYPE } from "@/consts";
+import { createMsg, deliverMsg, getConfirmModalConf, insertChannelList, insertServerList } from "@/utils/common";
+import WebIM from "@/utils/WebIM";
+import { message as messageWarn, Modal } from "antd";
+import React, { memo } from "react";
 import { connect } from "react-redux";
-import { insertChannelList } from "@/utils/common"
+import AvatarInfo from "../AvatarInfo";
+import s from "./index.module.less";
 
 const CustomMsg = (props) => {
   const { message, insertChatMessage, appUserInfo, setServerRole } = props;
@@ -45,6 +44,7 @@ const CustomMsg = (props) => {
             to: res.data.defaultChannelId,
             customEvent: ACCEPT_INVITE_TYPE.acceptInviteServer,
             customExts: {
+              customMsgType: CUSTOM_MSG_TYPE.invite,
               server_name: message.customExts?.server_name
             }
           });
@@ -86,6 +86,7 @@ const CustomMsg = (props) => {
             to: message.customExts?.channel_id,
             customEvent: ACCEPT_INVITE_TYPE.acceptInviteChannel,
             customExts: {
+              customMsgType: CUSTOM_MSG_TYPE.invite,
               server_name: message.customExts?.server_name,
               channel_name: message.customExts?.channel_name
             }

@@ -1,20 +1,21 @@
 import AvatarInfo from "@/components/AvatarInfo";
-import s from "./index.module.less";
-import React, { memo, useRef, useMemo, useState, useEffect } from "react";
-import TxtMsg from "@/components/TxtMsg";
+import CustomMsg from "@/components/CustomMsg";
 import FileMsg from "@/components/FileMsg";
 import ImgMsg from "@/components/ImgMsg";
-import RecallMsg from "@/components/RecallMsg";
-import CustomMsg from "@/components/CustomMsg";
 import Operation from "@/components/MsgOperation";
-import ThreadMsg from "@/components/ThreadMsg";
 import ReactionMsg from "@/components/ReactionMsg";
-import { renderTime, getUsersInfo } from "@/utils/common";
-import { connect } from "react-redux";
-import { MESSAGE_ITEM_SOURCE } from "@/consts";
+import RecallMsg from "@/components/RecallMsg";
+import SignInCardMsg from "@/components/SignInCardMsg";
+import ThreadMsg from "@/components/ThreadMsg";
+import TxtMsg from "@/components/TxtMsg";
+import { CUSTOM_MSG_TYPE, MESSAGE_ITEM_SOURCE } from "@/consts";
+import { getUsersInfo, renderTime } from "@/utils/common";
 import WebIM from "@/utils/WebIM";
-import { Popover } from "antd";
 import UserDetail from "@/views/Channel/components/UserDetail";
+import { Popover } from "antd";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
+import { connect } from "react-redux";
+import s from "./index.module.less";
 
 const Message = (props) => {
   const parent = useRef();
@@ -143,7 +144,8 @@ const Message = (props) => {
             {message.type === "img" && <ImgMsg message={message} />}
             {message.type === "file" && <FileMsg message={message} />}
             {message.type === "recall" && <RecallMsg message={message} />}
-            {message.type === "custom" && <CustomMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.invite && <CustomMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn &&  <SignInCardMsg message={message} />}
           </div>
         </div>
       </div>
