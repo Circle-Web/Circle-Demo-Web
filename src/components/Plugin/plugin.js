@@ -1,9 +1,9 @@
-import { connect } from "react-redux"
-import s from './index.module.less'
 import CloseIcon from "@/components/CloseIcon";
-import useDraggable from 'use-draggable-hook'
-import { useEffect, useRef, memo } from "react";
-import {iframeMap, iframeDOMMap} from './index'
+import { memo, useEffect, useRef } from "react";
+import { connect } from "react-redux";
+import useDraggable from 'use-draggable-hook';
+import { iframeDOMMap, iframeMap } from './index';
+import s from './index.module.less';
 
 /**
  * 
@@ -18,7 +18,7 @@ import {iframeMap, iframeDOMMap} from './index'
  * @param {string} param.currentChannelInfo.channelId // 频道ID
  * @returns 
  */
- const Plugin = ({url, setting, serverRole, userInfo, currentChannelInfo}) => {
+const Plugin = ({ url, setting, serverRole, userInfo, currentChannelInfo }) => {
     console.log('appUserInfo, serverRole: ', currentChannelInfo)
 
     const width = setting?.width ?? '375px'
@@ -30,9 +30,13 @@ import {iframeMap, iframeDOMMap} from './index'
      * @param {MessageEvent} evt 
      */
     const handleMessage = (evt) => {
+        console.log({ evt })
         const iframeWindow = iframeRef.current.contentWindow
         if (iframeWindow === evt.source) {
             console.log('iframeDocument: ', evt)
+            if (evt.data.type === 'signIn') {
+                console.warn('sb')
+            }
         }
     }
 
@@ -80,7 +84,7 @@ import {iframeMap, iframeDOMMap} from './index'
     }
 
     return (
-        <div className={s.pluginBody} style={{width: width, height: height}} ref={target}>
+        <div className={s.pluginBody} style={{ width: width, height: height }} ref={target}>
             <div className={s.close} onClick={() => {
                 handleClose(url)
             }}>
@@ -105,7 +109,7 @@ const mapStateToProps = ({ app, server }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+
     };
 };
 

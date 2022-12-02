@@ -1,11 +1,11 @@
-import React, { memo, useState, useEffect } from "react";
-import s from "./plugin.module.less";
+import AppLogo from "@/assets/images/app_icon.png";
+import ChannelPlus from "@/assets/images/channelPlus.png";
+import CloseIcon from "@/components/CloseIcon";
+import { openPlugin } from '@/components/Plugin/index';
+import React, { memo, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import CloseIcon from "@/components/CloseIcon";
-import AppLogo from "@/assets/images/app_icon.png"
-import ChannelPlus from "@/assets/images/channelPlus.png"
-import {openPlugin} from '@/components/Plugin/index'
+import s from "./plugin.module.less";
 
 const PLUGIN_STOP_ID = '__plugin__shop__id__'
 
@@ -24,8 +24,8 @@ const PluginList = (props) => {
             },
             {
                 logo: AppLogo,
-                name: '测试111',
-                url: '',
+                name: '打卡',
+                url: 'http://localhost:1000',
                 id: 2
             },
             {
@@ -60,7 +60,7 @@ const PluginList = (props) => {
                 url: '',
                 id: PLUGIN_STOP_ID
             })
-            for(let i = 0; i < remainder; i++) {
+            for (let i = 0; i < remainder; i++) {
                 remainderArr.push({
                     logo: '',
                     name: '',
@@ -116,7 +116,7 @@ const mapStateToProps = ({ app }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+
     };
 };
 export default memo(connect(mapStateToProps, mapDispatchToProps)(PluginList));
