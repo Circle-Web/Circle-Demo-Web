@@ -28,5 +28,5 @@ export const sendCustomMessage = (config) => {
     console.log({ option })
     let msg = WebIM.message.create(option);
 
-    return WebIM.conn.send(msg)
+    return WebIM.conn.send(msg).then(() => msg)
 }

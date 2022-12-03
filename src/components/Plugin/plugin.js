@@ -1,11 +1,12 @@
 import CloseIcon from "@/components/CloseIcon";
-import { CUSTOM_MSG_TYPE } from "@/consts";
+import { CHAT_TYPE, CUSTOM_MSG_TYPE } from "@/consts";
 import { sendCustomMessage } from "@/utils/message";
 import { memo, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import useDraggable from 'use-draggable-hook';
 import { iframeDOMMap, iframeMap } from './index';
 import s from './index.module.less';
+import WebIM from "@/utils/WebIM";
 
 /**
  * 
@@ -21,9 +22,7 @@ import s from './index.module.less';
  * @param {string} param.currentChannelInfo.channelId // 频道ID
  * @returns 
  */
-const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }) => {
-    console.log('appUserInfo, serverRole: ', currentChannelInfo)
-
+const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, insertChatMessage }) => {
     const width = setting?.width ?? '375px'
     const height = setting?.width ?? '540px'
     const iframeRef = useRef()
@@ -55,7 +54,7 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
                     channelId: currentChannelInfo.channelId,
                     customEvent: 'share',
                     customExts: { customMsgType: CUSTOM_MSG_TYPE.signIn, ...data.customExts, }
-                }).then(() => {
+                }).then((msg) => {
                     /**
                      * 分享成功回调
                      */
@@ -68,13 +67,13 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
                         code: 0,
                         msg: 'ok'
                     }, "*")
-                    // insertChatMessage({
-                    //     chatType: msg.chatType,
-                    //     fromId: msg.to,
-                    //     messageInfo: {
-                    //       list: [{ ...msg, from: WebIM.conn.user }]
-                    //     }
-                    //   });
+                    insertChatMessage({
+                        chatType: CHAT_TYPE.groupChat,
+                        fromId: msg.to,
+                        messageInfo: {
+                          list: [{ ...msg, from: WebIM.conn.user }]
+                        }
+                      });
                 }).catch(() => {
                     iframeWindow.postMessage({
                         uid,
@@ -156,7 +155,12 @@ const mapStateToProps = ({ app, server }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        insertChatMessage: (params) => {
+            return dispatch({
+              type: "app/insertChatMessage",
+              payload: params
+            });
+          }
     };
 };
 
