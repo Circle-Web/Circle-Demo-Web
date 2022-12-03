@@ -1,4 +1,5 @@
 import CloseIcon from "@/components/CloseIcon";
+import { sendCustomMessage } from "@/utils/message";
 import { memo, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import useDraggable from 'use-draggable-hook';
@@ -39,13 +40,45 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
             const {type, uid} = evt.data
             if (type === "getUserInfo") {
                 iframeWindow.postMessage({
-                    type,
                     uid,
                     data: {
                         userInfo,
                         serverRole
                     }
                 }, "*")
+            } else if (type === 'share') {
+                /**
+                 * 分享的方法
+                 */
+                sendCustomMessage({
+                    channelId: currentChannelInfo.channelId,
+                    customEvent: 'share',
+                    customExts: {
+                        /**
+                         * 分享的内容
+                         */
+                    }
+                }).then(() => {
+                    /**
+                     * 分享成功回调
+                     */
+                    iframeWindow.postMessage({
+                        uid,
+                        data: {
+                            userInfo,
+                            serverRole
+                        },
+                        code: 0,
+                        msg: 'ok'
+                    }, "*")
+                }).catch(() => {
+                    iframeWindow.postMessage({
+                        uid,
+                        data: {},
+                        code: -1,
+                        msg: '分享失败'
+                    }, "*")
+                })
             }
         }
     }

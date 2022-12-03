@@ -3,9 +3,8 @@ import WebIM from "./WebIM";
 /**
  * send custom message
  * @param {object} optionn.channelId 频道ID
- * @param {object} optionn.customEvent customType
- * @param {object} optionn.customEvent 频道ID
- * @param {object} optionn.customExts 频道ID
+ * @param {object} optionn.customEvent 自定义事件类型
+ * @param {object} optionn.customExts 扩展字段
  * @param {object} optionn.ext 频道ID
  */
 export const sendCustomMessage = (config) => {
@@ -27,9 +26,5 @@ export const sendCustomMessage = (config) => {
     }
     let msg = WebIM.message.create(option); 
 
-    WebIM.conn.send(msg).then(() => {
-        console.log('send text message Success');  
-    }).catch((e) => {
-        console.log("Send text message error");  
-    })
+    return WebIM.conn.send(msg)
 }
