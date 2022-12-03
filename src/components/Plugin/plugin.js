@@ -1,4 +1,5 @@
 import CloseIcon from "@/components/CloseIcon";
+import { CUSTOM_MSG_TYPE } from "@/consts";
 import { sendCustomMessage } from "@/utils/message";
 import { memo, useEffect, useRef } from "react";
 import { connect } from "react-redux";
@@ -37,7 +38,7 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
          */
         const iframeWindow = iframeRef.current.contentWindow
         if (iframeWindow === evt.source) {
-            const {type, uid} = evt.data
+            const { type, uid, data } = evt.data
             if (type === "getUserInfo") {
                 iframeWindow.postMessage({
                     uid,
@@ -53,11 +54,7 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
                 sendCustomMessage({
                     channelId: currentChannelInfo.channelId,
                     customEvent: 'share',
-                    customExts: {
-                        /**
-                         * 分享的内容
-                         */
-                    }
+                    customExts: { customMsgType: CUSTOM_MSG_TYPE.signIn, ...data.customExts, }
                 }).then(() => {
                     /**
                      * 分享成功回调
@@ -71,6 +68,13 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }
                         code: 0,
                         msg: 'ok'
                     }, "*")
+                    // insertChatMessage({
+                    //     chatType: msg.chatType,
+                    //     fromId: msg.to,
+                    //     messageInfo: {
+                    //       list: [{ ...msg, from: WebIM.conn.user }]
+                    //     }
+                    //   });
                 }).catch(() => {
                     iframeWindow.postMessage({
                         uid,

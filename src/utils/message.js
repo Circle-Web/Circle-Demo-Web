@@ -1,3 +1,4 @@
+import { CHAT_TYPE } from "@/consts";
 import WebIM from "./WebIM";
 
 /**
@@ -11,7 +12,7 @@ export const sendCustomMessage = (config) => {
     const { channelId: to, customEvent, customExts, ext = {} } = config
     let option = {
         // 会话类型，设置为群聊。
-        chatType: 'groupChat',
+        chatType: CHAT_TYPE.groupChat,
         /**
          * 消息类型
          */
@@ -24,7 +25,8 @@ export const sendCustomMessage = (config) => {
         customExts,
         ext
     }
-    let msg = WebIM.message.create(option); 
+    console.log({ option })
+    let msg = WebIM.message.create(option);
 
     return WebIM.conn.send(msg)
 }
