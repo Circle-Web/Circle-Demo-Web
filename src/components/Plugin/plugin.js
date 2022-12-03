@@ -43,7 +43,8 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, 
                     uid,
                     data: {
                         userInfo,
-                        serverRole
+                        serverRole,
+                        currentChannelInfo
                     }
                 }, "*")
             } else if (type === 'share') {
