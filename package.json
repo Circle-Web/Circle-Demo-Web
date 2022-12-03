@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@emojiiii/iframe-promise": "^1.0.0",
+    "@emojiiii/iframe-promise": "^1.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@rematch/core": "^2.2.0",
     "@rematch/loading": "^2.1.2",

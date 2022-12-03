@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.16.0
-  '@emojiiii/iframe-promise': ^1.0.0
+  '@emojiiii/iframe-promise': ^1.0.2
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.3
   '@rematch/core': ^2.2.0
   '@rematch/loading': ^2.1.2
@@ -74,7 +74,7 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.19.6
-  '@emojiiii/iframe-promise': 1.0.0
+  '@emojiiii/iframe-promise': 1.0.2
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.8_prxwy2zxcolvdag5hfkyuqbcze
   '@rematch/core': 2.2.0_redux@4.2.0
   '@rematch/loading': 2.1.2_@rematch+core@2.2.0
@@ -1738,8 +1738,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@emojiiii/iframe-promise/1.0.0:
-    resolution: {integrity: sha512-lQy01XZEoc8vFGLWRHlpCZhsJjiM9OQaA+uOi4FNyqX2dbL1qigJ1x72LWng+CiYGVDWJMhNKpn6PKrLVNkY/A==}
+  /@emojiiii/iframe-promise/1.0.2:
+    resolution: {integrity: sha512-gRQu+2+YAQjyPyGBBe3L69lZVD0ipq5+5ThYEt/BjrBttTSy4/UJV3U6pVkcMzyKYbA+MPIlOLlR7KfMvBHMjw==}
     dev: false
 
   /@eslint/eslintrc/1.3.3:
