@@ -9,7 +9,7 @@ export const iframeDOMMap = new WeakMap()
 const App = (plugin) => {
     return (
         <Provider store={store}>
-            <Plugin url={plugin.url} setting={plugin.setting} />
+            <Plugin url={plugin.url} setting={plugin.setting} name={plugin.name} />
         </Provider>
     )
 }
@@ -19,6 +19,7 @@ const App = (plugin) => {
  * @param {object} plugin 
  * @param {string} plugin.url
  * @param {string} plugin.setting
+ * @param {string} plugin.name
  */
 export const openPlugin = (plugin) => {
     const originIframe = iframeMap.get(plugin.url)
@@ -34,7 +35,7 @@ export const openPlugin = (plugin) => {
     const body = document.querySelector('body')
     body.appendChild(rootDOM)
     const root = createRoot(rootDOM)
-    root.render(<App url={plugin.url} setting={plugin.setting} />)
+    root.render(<App url={plugin.url} setting={plugin.setting} name={plugin.name} />)
     iframeMap.set(plugin.url, rootDOM)
     iframeDOMMap.set(rootDOM, root)
 }

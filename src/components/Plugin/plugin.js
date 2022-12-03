@@ -8,17 +8,18 @@ import s from './index.module.less';
 /**
  * 
  * @param {object} param
- * @param {string} param.url
- * @param {object} param.setting
+ * @param {string} param.url 插件地址
+ * @param {object} param.setting 插件配置
  * @param {string} param.setting.width
  * @param {string} param.setting.height
+ * @param {object} param.name 插件名称
  * @param {object} param.currentChannelInfo // 当前的频道信息
  * @param {string} param.currentChannelInfo.serverId // 当前的社区id
  * @param {string} param.currentChannelInfo.name // 频道名称
  * @param {string} param.currentChannelInfo.channelId // 频道ID
  * @returns 
  */
-const Plugin = ({ url, setting, serverRole, userInfo, currentChannelInfo }) => {
+const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo }) => {
     console.log('appUserInfo, serverRole: ', currentChannelInfo)
 
     const width = setting?.width ?? '375px'
@@ -30,12 +31,21 @@ const Plugin = ({ url, setting, serverRole, userInfo, currentChannelInfo }) => {
      * @param {MessageEvent} evt 
      */
     const handleMessage = (evt) => {
-        console.log({ evt })
+        /**
+         * @type {Window} iframe的window对象
+         */
         const iframeWindow = iframeRef.current.contentWindow
         if (iframeWindow === evt.source) {
-            console.log('iframeDocument: ', evt)
-            if (evt.data.type === 'signIn') {
-                console.warn('sb')
+            const {type, uid} = evt.data
+            if (type === "getUserInfo") {
+                iframeWindow.postMessage({
+                    type,
+                    uid,
+                    data: {
+                        userInfo,
+                        serverRole
+                    }
+                }, "*")
             }
         }
     }
@@ -92,7 +102,7 @@ const Plugin = ({ url, setting, serverRole, userInfo, currentChannelInfo }) => {
             </div>
             <div className={s.drag}>按住此处可进行拖动</div>
             <div className={s.layer}>
-                <iframe src={url} className={s.iframe} ref={iframeRef}></iframe>
+                <iframe src={url} className={s.iframe} ref={iframeRef} title={name}></iframe>
             </div>
         </div>
     )

@@ -25,7 +25,7 @@ const PluginList = (props) => {
             {
                 logo: AppLogo,
                 name: '打卡',
-                url: 'http://localhost:1000',
+                url: 'http://localhost:5174',
                 id: 2
             },
             {
@@ -93,7 +93,7 @@ const PluginList = (props) => {
                 {pluginList.map((item, index) => {
                     return <div className={s.pluginInfo} title={item.name} key={item.id} onClick={() => handleShowPluginShop(item)}>
                         {
-                            item.logo && <img src={item.logo} className={s.pluginImg} />
+                            item.logo && <img src={item.logo} className={s.pluginImg} alt="logo" />
                         }
                         <div className={s.pluginName}>{item.name}</div>
                     </div>
