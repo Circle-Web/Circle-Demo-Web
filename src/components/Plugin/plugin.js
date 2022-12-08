@@ -38,7 +38,7 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, 
         const iframeWindow = iframeRef.current.contentWindow
         if (iframeWindow === evt.source) {
             const { type, uid, data } = evt.data
-            if (type === "getUserInfo") {
+            if (type === "baseInfo") {
                 iframeWindow.postMessage({
                     uid,
                     data: {
@@ -62,11 +62,9 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, 
                     iframeWindow.postMessage({
                         uid,
                         data: {
-                            userInfo,
-                            serverRole
-                        },
-                        code: 0,
-                        msg: 'ok'
+                            code: 0,
+                            msg: 'ok'
+                        }
                     }, "*")
                     insertChatMessage({
                         chatType: CHAT_TYPE.groupChat,
@@ -78,9 +76,11 @@ const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, 
                 }).catch(() => {
                     iframeWindow.postMessage({
                         uid,
-                        data: {},
-                        code: -1,
-                        msg: '分享失败'
+                        data: {
+                            code: -1,
+                            msg: '分享失败'
+                        }
+                        
                     }, "*")
                 })
             }
