@@ -18,21 +18,33 @@ const PluginList = (props) => {
         [
             {
                 logo: AppLogo,
-                name: '声网',
+                name: '插件商店',
                 url: 'http://localhost:5173/',
                 id: 1
             },
             {
                 logo: AppLogo,
                 name: '打卡',
-                url: 'http://localhost:5174',
+                url: 'http://localhost:5174/ext/reportShare',
                 id: 2
             },
             {
                 logo: AppLogo,
-                name: '测试111',
-                url: '',
+                name: '每日签到',
+                url: 'http://localhost:5174/ext/sign',
                 id: 3
+            },
+            {
+                logo: AppLogo,
+                name: '机器人',
+                url: 'http://localhost:5174/ext/robot',
+                id: 4
+            },
+            {
+                logo: AppLogo,
+                name: '投票',
+                url: 'http://localhost:5174/ext/vote',
+                id: 5
             }
         ]
     )
