@@ -1,15 +1,14 @@
-import React, { memo, useMemo } from "react";
-import s from "./index.module.less";
-import { useParams } from "react-router-dom";
-import WebIM from "@/utils/WebIM";
 import AvatarInfo from "@/components/AvatarInfo";
 import BasicInfo from "@/components/BasicInfo";
 import Icon from "@/components/Icon";
-import MemberOpt from "../MemberOpt";
-import { useNavigate } from "react-router-dom";
-import { USER_ROLE, CHAT, UN_MUTE, MUTE, KICK } from "@/consts";
-import { connect } from "react-redux";
+import { CHAT, KICK, MUTE, UN_MUTE, USER_ROLE } from "@/consts";
+import WebIM from "@/utils/WebIM";
 import { message } from "antd";
+import React, { memo, useMemo } from "react";
+import { connect } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import MemberOpt from "../MemberOpt";
+import s from "./index.module.less";
 
 const MemberItem = (props) => {
   const navigate = useNavigate();
@@ -177,8 +176,10 @@ const MemberItem = (props) => {
         <AvatarInfo
           size={36}
           name={info?.nickname || uid}
+          name={info?.nickname}
           src={info?.avatarurl}
           online={info?.online}
+          robot={info?.robot}
         />
       </div>
       <div className={s.mainInfo}>

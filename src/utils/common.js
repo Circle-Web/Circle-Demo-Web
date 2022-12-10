@@ -1,11 +1,10 @@
+import Icon from "@/components/Icon";
+import { CHAT_TYPE, ERROR_CODE, SERVER_COVER_MAP } from "@/consts";
+import { emojiMap } from "@/consts/emoji";
 import WebIM from "@/utils/WebIM";
+import { message as messageTip } from "antd";
 import moment from "moment";
 import store from "../store";
-import { ERROR_CODE } from "@/consts";
-import { CHAT_TYPE, SERVER_COVER_MAP } from "@/consts";
-import Icon from "@/components/Icon";
-import { message as messageTip } from "antd";
-import { emojiMap } from "@/consts/emoji";
 
 const { dispatch, getState } = store;
 
@@ -24,7 +23,7 @@ export function getUsersInfo(userIdList) {
   const result = {};
 
   return new Promise((resolve, reject) => {
-    const type = [
+    const properties = [
       "nickname",
       "avatarurl",
       "mail",
@@ -32,7 +31,8 @@ export function getUsersInfo(userIdList) {
       "gender",
       "sign",
       "birth",
-      "ext"
+      "ext",
+      "robot"
     ];
     const reUserInfo = {};
     userIdList.forEach((item) => {
@@ -45,11 +45,11 @@ export function getUsersInfo(userIdList) {
       resolve(Object.assign({}, reUserInfo));
     } else {
       WebIM.conn
-        .fetchUserInfoById(userIdList, type)
+        .fetchUserInfoById(userIdList, properties)
         .then((res) => {
           res.data &&
             Object.keys(res.data).forEach((item) => {
-              type.forEach((key) => {
+              properties.forEach((key) => {
                 reUserInfo[item][key] = res.data[item][key]
                   ? res.data[item][key]
                   : "";
@@ -514,7 +514,7 @@ const updateLocalChannelDetail = (type, serverId, data) => {
   //本账号编辑channel "edit"
   const { id } = data;
   const currentChannelInfo = getState().app.currentChannelInfo;
-  if(currentChannelInfo.serverId === serverId && currentChannelInfo.channelId === data.id){
+  if (currentChannelInfo.serverId === serverId && currentChannelInfo.channelId === data.id) {
     dispatch.app.setCurrentChannelInfo({
       ...currentChannelInfo,
       ...data
