@@ -28,7 +28,7 @@ const MemberItem = (props) => {
     return (
         <div className={`memberItem ${s.contactsItem} ${selected ? s.selected : borderType === 2 ? s.contactsItem2 : null} `} onMouseOver={() => { handlerHover && handlerHover(info?.uid) }} onMouseLeave={() => { handlerHover && handlerHover("") }}>
             <div className={s.avatar}>
-                <AvatarInfo size={size} name={info?.nickname || uid} src={info?.avatarurl} online={info?.online} />
+                <AvatarInfo size={size} name={info?.nickname || uid} src={info?.avatarurl} online={info?.online} robot={info?.robot} />
             </div>
             <div className={`${s.mainInfo} ${borderType === 2 ? s.type2 : null}`}>
                 <div className={s.basicInfo}>

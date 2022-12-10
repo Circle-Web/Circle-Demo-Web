@@ -54,6 +54,7 @@ const ThreadMsg = (props) => {
                 <AvatarInfo
                   size={24}
                   src={appUserInfo[thread.lastMessage.from]?.avatarurl}
+                  robot={appUserInfo[thread.lastMessage.from]?.robot}
                 />
               </div>
               <div className={s.message}>

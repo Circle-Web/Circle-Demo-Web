@@ -158,6 +158,7 @@ const CustomMsg = (props) => {
               src={message.customExts?.icon}
               shape="square"
               isServer={true}
+              robot={appUserInfo[message.from]?.robot}
             />
           </div>
           <div className={s.infoCon}>

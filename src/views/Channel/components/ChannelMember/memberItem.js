@@ -176,7 +176,6 @@ const MemberItem = (props) => {
         <AvatarInfo
           size={36}
           name={info?.nickname || uid}
-          name={info?.nickname}
           src={info?.avatarurl}
           online={info?.online}
           robot={info?.robot}

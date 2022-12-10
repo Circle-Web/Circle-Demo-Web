@@ -114,7 +114,7 @@ const Message = (props) => {
             onVisibleChange={handleUserPanel}
             trigger="click"
           >
-            <AvatarInfo size={36} src={appUserInfo[message.from]?.avatarurl} />
+            <AvatarInfo size={36} src={appUserInfo[message.from]?.avatarurl} robot={appUserInfo[message.from]?.robot} />
           </Popover>
         </div>
 
@@ -145,7 +145,7 @@ const Message = (props) => {
             {message.type === "file" && <FileMsg message={message} />}
             {message.type === "recall" && <RecallMsg message={message} />}
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.invite && <CustomMsg message={message} />}
-            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn &&  <SignInCardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn && <SignInCardMsg message={message} />}
           </div>
         </div>
       </div>
