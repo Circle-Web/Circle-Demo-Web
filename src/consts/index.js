@@ -49,9 +49,24 @@ const ACCEPT_INVITE_TYPE = {
   acceptInviteServer: "join_server",
   acceptInviteChannel: "join_channel"
 };
+
+/**
+ * 自定义的分享消息类型
+ */
 const CUSTOM_MSG_TYPE = {
+  /**
+   * 邀请消息? 不知道是谁定义的
+   */
   invite: 1,
-  signIn: 2
+  /**
+   * 打卡消息
+   * @deprecated
+   */
+  signIn: 2,
+  /**
+   * 卡片消息
+   */
+  card: 3,
 }
 const MESSAGE_ITEM_SOURCE = {
   single: "singleChat",

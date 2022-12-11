@@ -51,9 +51,8 @@ const ChannelMember = (props) => {
         pageSize: LIMIT,
         cursor
       })
-      .then((res) => {
+      .then(async (res) => {
         const uidList = res.data.list.map((item) => item.userId);
-
         let userRoleList = res.data.list.map((item) => {
           return {
             role: item.role,
@@ -63,7 +62,17 @@ const ChannelMember = (props) => {
 
         let ls = [];
 
-        getUsersInfo(uidList);
+        try {
+          const fullUserInfo = await getUsersInfo(uidList)
+          userRoleList = userRoleList.map(item => {
+            return {
+              ...item,
+              ...fullUserInfo[item.uid]
+            }
+          })
+        } catch(err) {
+
+        }
 
         if (channelMemberInfo.list && cursor !== "") {
           ls = [...channelMemberInfo.list, ...userRoleList];
@@ -102,7 +111,7 @@ const ChannelMember = (props) => {
         loader={<></>}
         endMessage={<></>}
       >
-        {channelMemberInfo?.list?.map((item) => {
+        {channelMemberInfo?.list?.filter(item => !item.robot).map((item) => {
           return (
             <MemberItem
               style={{ padding: 0 }}

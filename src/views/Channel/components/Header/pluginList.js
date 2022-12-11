@@ -59,40 +59,6 @@ const PluginList = (props) => {
         }
     }
 
-    /**
-     * 页面初始化时少于多少个
-     */
-    useEffect(() => {
-        const remainder = pluginList.length % 6 - 1
-        const remainderArr = []
-        if (remainder) {
-            remainderArr.push({
-                logo: ChannelPlus,
-                name: '添加插件',
-                url: '',
-                id: PLUGIN_STOP_ID
-            })
-            for (let i = 0; i < remainder; i++) {
-                remainderArr.push({
-                    logo: '',
-                    name: '',
-                    url: '',
-                    id: i + 4
-                })
-            }
-        } else {
-            remainderArr.push({
-                logo: ChannelPlus,
-                name: '添加插件',
-                url: '',
-                id: PLUGIN_STOP_ID
-            })
-        }
-        setPluginList(pluginList.concat(remainderArr))
-
-        console.log(serverRole, appUserInfo)
-    }, [])
-
     return (
         <div className={s.layout}>
             <div className={s.headerThread}>

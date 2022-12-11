@@ -6,6 +6,7 @@ import Operation from "@/components/MsgOperation";
 import ReactionMsg from "@/components/ReactionMsg";
 import RecallMsg from "@/components/RecallMsg";
 import SignInCardMsg from "@/components/SignInCardMsg";
+import CardMsg from "@/components/CardMsg";
 import ThreadMsg from "@/components/ThreadMsg";
 import TxtMsg from "@/components/TxtMsg";
 import { CUSTOM_MSG_TYPE, MESSAGE_ITEM_SOURCE } from "@/consts";
@@ -124,6 +125,9 @@ const Message = (props) => {
               <span className={s.name}>
                 {appUserInfo[message.from]?.nickname || message.from}
               </span>
+              {
+                appUserInfo[message.from]?.robot && <span className={s.tag}>bot</span>
+              }
               <span className={s.date}>{renderTime(message.time)}</span>
             </div>
             {showOperation && (
@@ -145,7 +149,8 @@ const Message = (props) => {
             {message.type === "file" && <FileMsg message={message} />}
             {message.type === "recall" && <RecallMsg message={message} />}
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.invite && <CustomMsg message={message} />}
-            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn && <SignInCardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn &&  <SignInCardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.card &&  <CardMsg message={message} />}
           </div>
         </div>
       </div>

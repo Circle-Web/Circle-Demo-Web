@@ -32,9 +32,7 @@ const AvatarInfo = ({ size, src, online, isServer, shape = "circle", robot }) =>
                     icon={isServer ? <DefaultServerIcon /> : (robot ? <DefaultRovbotAvaIcon /> : <DefaultAvaIcon />)} /> :
                 <Avatar shape={shape} size={size || 40} icon={isServer ? <DefaultServerIcon /> : (robot ? <DefaultRovbotAvaIcon /> : <DefaultAvaIcon />)} />}
             {
-                robot ?
-                    <span className={style.robot}>BOT</span>
-                    : (online === undefined ? null : <span className={`${style.dot} ${online === 1 ? style.online : style.offline} ${size >= 90 ? style.bigDot : null}`}></span>)
+                online === undefined ? null : <span className={`${style.dot} ${online === 1 ? style.online : style.offline} ${size >= 90 ? style.bigDot : null}`}></span>
             }
 
         </div>
