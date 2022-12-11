@@ -5,8 +5,27 @@ import WebIM from "@/utils/WebIM";
 import { message as messageTip } from "antd";
 import moment from "moment";
 import store from "../store";
+import http from "./axios";
+import { judgeKeyword } from "./keyword";
 
 const { dispatch, getState } = store;
+
+export const chatKeywordTrigger = (keyword) => {
+  if (!judgeKeyword(keyword)) {
+    return
+  }
+  const {appUserInfo, userInfo, currentChannelInfo} = getState().app;
+  const {username} = userInfo
+  const {channelId, serverId} = currentChannelInfo
+  const fromNickName = appUserInfo[username].nickname || username
+  http('post', 'http://121.37.205.80:3000/api/robot/chatKeywordTrigger', {
+    type: 1,
+    keyword,
+    fromNickName,
+    serverId,
+    channelId
+  })
+};
 
 //根据uid获取好友详情以及在线状态，返回全量数据（object）,并订阅所有人
 export function getUsersInfo(userIdList) {

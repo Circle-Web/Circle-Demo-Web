@@ -1,4 +1,4 @@
-import { CUSTOM_MSG_TYPE, SCROLL_WARP_ID } from "@/consts";
+import { SCROLL_WARP_ID } from "@/consts";
 import {
   convertToMessage, createMsg,
   deliverMsg, formatImFile, getEmojiHtml, pasteHtmlAtCaret, renderHtml, scrollToBottom
@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import EmojiPicker from "../Emoji";
 import Icon from "../Icon";
 import s from "./index.module.less";
+import {chatKeywordTrigger} from '@/utils/common'
 
 const EnterKeyCode = 13;
 
@@ -141,32 +142,6 @@ const Input = (props) => {
       });
     });
   };
-
-  // 发送打卡的卡片信息事件
-  const signIn = () => {
-    //发送消息
-    getTarget().then((target) => {
-      let msg = createMsg({
-        chatType: chatType,
-        type: "custom",
-        to: target,
-        customEvent: "",
-        customExts: {
-          customMsgType: CUSTOM_MSG_TYPE.signIn,
-          title_name: "坚持戴口罩"
-        }
-      });
-      deliverMsg(msg).then(() => {
-        insertChatMessage({
-          chatType: msg.chatType,
-          fromId: msg.to,
-          messageInfo: {
-            list: [{ ...msg, from: WebIM.conn.user }]
-          }
-        });
-      });
-    })
-  }
   const menu = (
     <Menu
       items={[
@@ -202,15 +177,6 @@ const Input = (props) => {
                 <span className="circleDropMenuOp">发送附件</span>
               </div>
             </Upload>
-          )
-        },
-        {
-          key: "signIn",
-          label: (
-            <div className="circleDropItem" onClick={signIn}>
-              <Icon name="clip" size="24px" iconClass="circleDropMenuIcon" />
-              <span className="circleDropMenuOp">打卡签到</span>
-            </div>
           )
         }
       ]}
@@ -255,18 +221,20 @@ const Input = (props) => {
   const sendMessage = useCallback(() => {
     if (!text) return;
     getTarget().then((target) => {
-      let msg = createMsg({
+      const msg = convertToMessage(ref.current.innerHTML)
+      const options = createMsg({
         chatType,
         type: "txt",
         to: target,
-        msg: convertToMessage(ref.current.innerHTML),
+        msg,
         isChatThread: props.isThread
       });
+      chatKeywordTrigger(msg)
       setText("");
-      deliverMsg(msg).then(() => {
-        if (msg.isChatThread) {
+      deliverMsg(options).then(() => {
+        if (options.isChatThread) {
           setThreadMessage({
-            message: { ...msg, from: WebIM.conn.user },
+            message: { ...options, from: WebIM.conn.user },
             fromId: target
           });
         } else {
@@ -274,7 +242,7 @@ const Input = (props) => {
             chatType,
             fromId: target,
             messageInfo: {
-              list: [{ ...msg, from: WebIM.conn.user }]
+              list: [{ ...options, from: WebIM.conn.user }]
             }
           });
           scrollBottom();

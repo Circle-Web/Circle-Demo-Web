@@ -106,6 +106,16 @@ export default function initListener() {
   });
   //channel事件
   WebIM.conn.addEventHandler("channelEvent", {
+    /**
+     * @param {Object} e 事件对象
+     * @param {string} e.operator 操作者, 谁加进来了
+     * @param {string} e.id 消息ID
+     * @param {string} e.name ?未知
+     * @param {string} e.operation 频道消息类型
+     * @param {string} e.to 发给谁?
+     * @param {Object} e.serverInfo 服务器信息
+     * @param {string} e.serverInfo.id 服务器ID
+     */
     onChannelEvent: (e) => {
       const { operator, operation, id, name, to, serverInfo } = e;
       switch (operation) {
@@ -182,6 +192,9 @@ export default function initListener() {
           Modal.confirm(conf);
           break;
         case CHANNEL_EVENT.memberPresence:
+          /**
+           * TODO 如果是机器人进来的可以不用管
+           */
           message.success(`${operator}加入频道`);
           break;
         case CHANNEL_EVENT.memberAbsence:

@@ -123,10 +123,15 @@ const Message = (props) => {
           <div className={s.bar}>
             <div className={s.l}>
               <span className={s.name}>
-                {appUserInfo[message.from]?.nickname || message.from}
+                {/* 先取最新的nickname, 没有就取消息的nickname, 最后兜底 username */}
+                {appUserInfo[message.from]?.nickname || message.ext?.nickname || message.from}
               </span>
               {
-                appUserInfo[message.from]?.robot && <span className={s.tag}>bot</span>
+                /**
+                 * robot 也先取ext 里面的robot, 没有就取appUserInfo 里面的 robot
+                 * robot 1 是频道专属机器人, 2 是 webhook 机器人
+                 */
+                (appUserInfo[message.from]?.robot || message.ext?.robot) && <span className={`${s.tag} ${(appUserInfo[message.from]?.robot || message.ext?.robot) === 1 ? s.spec : ''}`}>bot</span>
               }
               <span className={s.date}>{renderTime(message.time)}</span>
             </div>
@@ -149,8 +154,8 @@ const Message = (props) => {
             {message.type === "file" && <FileMsg message={message} />}
             {message.type === "recall" && <RecallMsg message={message} />}
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.invite && <CustomMsg message={message} />}
-            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn &&  <SignInCardMsg message={message} />}
-            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.card &&  <CardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn && <SignInCardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.card && <CardMsg message={message} />}
           </div>
         </div>
       </div>
