@@ -19,7 +19,7 @@ const PluginList = (props) => {
             {
                 logo: AppLogo,
                 name: '插件商店',
-                url: 'http://localhost:5173/',
+                url: 'http://localhost:5174/ext/market',
                 id: 1
             },
             {

@@ -12,7 +12,7 @@ axios.defaults.timeout = 100000;
  */
 axios.interceptors.request.use(
     (config) => {
-        const token = getState().app.userInfo.accessToken;
+        const token = getState().app?.userInfo?.accessToken;
         config.data = JSON.stringify(config.data);
         config.headers = {
             "Content-Type": "application/json",
