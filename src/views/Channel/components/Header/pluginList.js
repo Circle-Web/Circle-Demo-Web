@@ -45,6 +45,12 @@ const PluginList = (props) => {
                 name: '投票',
                 url: 'http://localhost:5174/ext/vote',
                 id: 5
+            },
+            {
+                logo: AppLogo,
+                name: '代码片段',
+                url: 'http://localhost:5174/ext/code',
+                id: 6
             }
         ]
     )

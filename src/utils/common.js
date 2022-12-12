@@ -621,6 +621,15 @@ const renderTxt = (txt) => {
   if (txt === undefined) {
     return [];
   }
+  /**
+   * 先把文本中的#查询出来，然后替换成蓝色
+   * TODO: 正则匹配即可
+   */
+
+
+  /**
+   * 下方都是匹配表情的文本，需要转换成img标签
+   */
   let rnTxt = [];
   let match = null;
   const regex = /(\[.*?\])/g;
