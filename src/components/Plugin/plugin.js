@@ -24,7 +24,7 @@ import WebIM from "@/utils/WebIM";
  */
 const Plugin = ({ url, setting, name, serverRole, userInfo, currentChannelInfo, insertChatMessage }) => {
     const width = setting?.width ?? '375px'
-    const height = setting?.width ?? '540px'
+    const height = setting?.height ?? '540px'
     const iframeRef = useRef()
 
     /**

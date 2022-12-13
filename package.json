@@ -176,8 +176,8 @@
             "javascript",
             "css",
             "typescript",
-            "scss",
-            "html"
+            "html",
+            "json"
           ],
           "theme": "dark",
           "css": true

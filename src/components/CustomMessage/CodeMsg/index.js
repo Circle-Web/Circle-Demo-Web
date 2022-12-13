@@ -1,22 +1,19 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
 import s from "./index.module.less";
 import Prismjs from 'prismjs'
 
 // 自定义消息——卡片消息
 const CardMsg = (props) => {
   const { message } = props;
-  const {title, codeLang, codeContent} = message.customExts ?? {};
-  
-  console.log('title: ', title)
-  const [highlightCode, setHighLightCode] = useState('')
+  const {codeLang, codeContent} = message.customExts ?? {};
 
-  useEffect(() => {
-    const result = Prismjs.highlight(codeContent, Prismjs.languages[`${codeLang}`], codeLang)
-    setHighLightCode(result)
-  }, [codeContent, codeLang])
+  const highlightCode = Prismjs.highlight(codeContent, Prismjs.languages[`${codeLang}`], codeLang)
+  function createMarkup(html) { 
+    return {__html: html};
+  };
 
   return (
-    <div className={s.code} dangerouslySetInnerHTML={highlightCode}></div>
+    <pre className={s.code} dangerouslySetInnerHTML={createMarkup(highlightCode)} />
   );
 };
 

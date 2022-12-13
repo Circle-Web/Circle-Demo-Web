@@ -50,7 +50,11 @@ const PluginList = (props) => {
                 logo: AppLogo,
                 name: '代码片段',
                 url: 'http://localhost:5174/ext/code',
-                id: 6
+                id: 6,
+                setting: {
+                    width: '720px',
+                    height: '600px'
+                }
             }
         ]
     )
