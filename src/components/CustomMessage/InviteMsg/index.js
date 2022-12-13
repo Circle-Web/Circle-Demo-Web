@@ -5,16 +5,23 @@ import WebIM from "@/utils/WebIM";
 import { message as messageWarn, Modal } from "antd";
 import React, { memo } from "react";
 import { connect } from "react-redux";
-import AvatarInfo from "../AvatarInfo";
+import AvatarInfo from "../../AvatarInfo";
 import s from "./index.module.less";
 
 const CustomMsg = (props) => {
   const { message, insertChatMessage, appUserInfo, setServerRole } = props;
+  /**
+   * 邀请加入社区/频道
+   */
   const isServerInvite = message.customEvent === INVITE_TYPE.inviteServer;
   const acceptInviteEvent =
     message.customEvent === ACCEPT_INVITE_TYPE.acceptInviteServer ||
     message.customEvent === ACCEPT_INVITE_TYPE.acceptInviteChannel;
   let acceptInfo = "";
+
+  /**
+   * 如果两种邀请都不是?
+   */
   if (acceptInviteEvent) {
     if (message.customEvent === ACCEPT_INVITE_TYPE.acceptInviteServer) {
       acceptInfo = `已加入社区 ${message.customExts?.server_name}`;
@@ -22,6 +29,7 @@ const CustomMsg = (props) => {
       acceptInfo = `已加入频道${message.customExts?.server_name}-#${message.customExts.channel_name}`;
     }
   }
+
   const channelName = isServerInvite
     ? ""
     : message.customExts?.channel_name || "";
@@ -110,6 +118,10 @@ const CustomMsg = (props) => {
         });
     }
   };
+
+  /**
+   * 拒绝加入
+   */
   const rejectJoin = () => {
     if (isServerInvite) {
       WebIM.conn.rejectServerInvite({
@@ -124,6 +136,10 @@ const CustomMsg = (props) => {
       });
     }
   }
+
+  /**
+   * 同意加入
+   */
   const joinServer = () => {
     if (inviteMe) {
       const conf = getConfirmModalConf({
@@ -143,6 +159,8 @@ const CustomMsg = (props) => {
       Modal.confirm(conf);
     }
   };
+
+  
   if (acceptInviteEvent) {
     return <div className={s.customCon}>{message.from === WebIM.conn.user ? "我" : appUserInfo[message.from]?.nickname || message.from}{acceptInfo}</div>;
   } else {

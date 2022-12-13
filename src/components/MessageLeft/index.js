@@ -1,12 +1,13 @@
 import AvatarInfo from "@/components/AvatarInfo";
-import CustomMsg from "@/components/CustomMsg";
 import FileMsg from "@/components/FileMsg";
 import ImgMsg from "@/components/ImgMsg";
 import Operation from "@/components/MsgOperation";
 import ReactionMsg from "@/components/ReactionMsg";
 import RecallMsg from "@/components/RecallMsg";
-import SignInCardMsg from "@/components/SignInCardMsg";
-import CardMsg from "@/components/CardMsg";
+import CustomMsg from "@/components/CustomMessage/InviteMsg";
+import SignInCardMsg from "@/components/CustomMessage/SignInCardMsg";
+import CardMsg from "@/components/CustomMessage/CardMsg";
+import CodeMsg from '@/components/CustomMessage/CodeMsg'
 import ThreadMsg from "@/components/ThreadMsg";
 import TxtMsg from "@/components/TxtMsg";
 import { CUSTOM_MSG_TYPE, MESSAGE_ITEM_SOURCE } from "@/consts";
@@ -131,7 +132,7 @@ const Message = (props) => {
                  * robot 也先取ext 里面的robot, 没有就取appUserInfo 里面的 robot
                  * robot 1 是频道专属机器人, 2 是 webhook 机器人
                  */
-                (appUserInfo[message.from]?.robot || message.ext?.robot) && <span className={`${s.tag} ${(appUserInfo[message.from]?.robot || message.ext?.robot) === 1 ? s.spec : ''}`}>bot</span>
+                (appUserInfo[message.from]?.robot || message.ext?.robot) && <span className={`${s.tag} ${(appUserInfo[message.from]?.robot || message.ext?.robot) === 1 ? s.spec : ''}`}>BOT</span>
               }
               <span className={s.date}>{renderTime(message.time)}</span>
             </div>
@@ -156,6 +157,7 @@ const Message = (props) => {
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.invite && <CustomMsg message={message} />}
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.signIn && <SignInCardMsg message={message} />}
             {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.card && <CardMsg message={message} />}
+            {message.type === "custom" && message.customExts?.customMsgType === CUSTOM_MSG_TYPE.code && <CodeMsg message={message} />}
           </div>
         </div>
       </div>

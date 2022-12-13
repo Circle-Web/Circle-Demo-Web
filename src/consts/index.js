@@ -67,6 +67,10 @@ const CUSTOM_MSG_TYPE = {
    * 卡片消息
    */
   card: 3,
+  /**
+   * 代码消息
+   */
+  code: 4
 }
 const MESSAGE_ITEM_SOURCE = {
   single: "singleChat",
