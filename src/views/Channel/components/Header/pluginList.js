@@ -1,8 +1,7 @@
 import AppLogo from "@/assets/images/app_icon.png";
-import ChannelPlus from "@/assets/images/channelPlus.png";
 import CloseIcon from "@/components/CloseIcon";
 import { openPlugin } from '@/components/Plugin/index';
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import s from "./plugin.module.less";

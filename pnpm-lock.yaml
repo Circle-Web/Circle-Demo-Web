@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^4.8.0
   '@babel/core': ^7.16.0
   '@emojiiii/iframe-promise': ^2.0.1
   '@pmmmwh/react-refresh-webpack-plugin': ^0.5.3
@@ -11,6 +12,7 @@ specifiers:
   '@testing-library/react': ^13.3.0
   '@testing-library/user-event': ^13.5.0
   '@types/prismjs': ^1.26.0
+  agora-rtc-sdk-ng: ^4.15.1
   antd: ^4.21.3
   antd-img-crop: ^4.2.3
   axios: ^0.27.2
@@ -76,6 +78,7 @@ specifiers:
   workbox-webpack-plugin: ^6.4.1
 
 dependencies:
+  '@ant-design/icons': 4.8.0_biqbaboplfbrettd7655fr4n2y
   '@babel/core': 7.19.6
   '@emojiiii/iframe-promise': 2.0.1
   '@pmmmwh/react-refresh-webpack-plugin': 0.5.8_prxwy2zxcolvdag5hfkyuqbcze
@@ -85,6 +88,7 @@ dependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0_aaq3sbffpfe3jnxzm2zngsddei
+  agora-rtc-sdk-ng: 4.15.1
   antd: 4.24.0_biqbaboplfbrettd7655fr4n2y
   antd-img-crop: 4.2.8_25jp3i4jllubqbmuqslxnfyexq
   axios: 0.27.2
@@ -176,8 +180,8 @@ packages:
     resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
     dev: false
 
-  /@ant-design/icons/4.7.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-aoB4Z7JA431rt6d4u+8xcNPPCrdufSRMUOpxa1ab6mz1JCQZOEVolj2WVs/tDFmN62zzK30mNelEsprLYsSF3g==}
+  /@ant-design/icons/4.8.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-T89P2jG2vM7OJ0IfGx2+9FC5sQjtTzRSz+mCHTXkFn/ELZc2YpfStmYHmqzq2Jx55J0F7+O6i5/ZKFSVNWCKNg==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
@@ -3056,6 +3060,16 @@ packages:
       - supports-color
     dev: false
 
+  /agora-rtc-sdk-ng/4.15.1:
+    resolution: {integrity: sha512-U1I1jOjs9NJSDPAsFuRUgiFgKRx8/J5rH12zNaAGyyXt3A+MPfYAccgfvlJIEhWn02ey97xXDklvufGercJcvw==}
+    dependencies:
+      agora-rte-extension: 1.2.3
+    dev: false
+
+  /agora-rte-extension/1.2.3:
+    resolution: {integrity: sha512-k3yNrYVyzJRoQJjaJUktKUI1XRtf8J1XsW8OzYKFqGlS8WQRMsES1+Phj2rfuEriiLObfuyuCimG6KHQCt5tiw==}
+    dev: false
+
   /ajv-formats/2.1.1_ajv@8.11.0:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
@@ -3162,7 +3176,7 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 6.0.0
-      '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
+      '@ant-design/icons': 4.8.0_biqbaboplfbrettd7655fr4n2y
       '@ant-design/react-slick': 0.29.2_react@18.2.0
       '@babel/runtime': 7.20.1
       '@ctrl/tinycolor': 3.4.1

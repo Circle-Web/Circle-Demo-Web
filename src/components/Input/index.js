@@ -10,8 +10,9 @@ import ContentEditable from "react-contenteditable";
 import { connect } from "react-redux";
 import EmojiPicker from "../Emoji";
 import Icon from "../Icon";
+import {AudioOutlined} from '@ant-design/icons';
 import s from "./index.module.less";
-import {chatKeywordTrigger} from '@/utils/common'
+import { chatKeywordTrigger } from '@/utils/common'
 
 const EnterKeyCode = 13;
 
@@ -142,6 +143,14 @@ const Input = (props) => {
       });
     });
   };
+
+  /**
+   * 语音消息
+   */
+  const handleCallMsg = () => {
+    
+  }
+
   const menu = (
     <Menu
       items={[
@@ -177,6 +186,15 @@ const Input = (props) => {
                 <span className="circleDropMenuOp">发送附件</span>
               </div>
             </Upload>
+          )
+        },
+        {
+          key: "audio",
+          label: (
+            <div className="circleDropItem" onClick={handleCallMsg}>
+              <AudioOutlined size={24} className="circleDropMenuIcon" />
+              <span className="circleDropMenuOp">发送语音</span>
+            </div>
           )
         }
       ]}
