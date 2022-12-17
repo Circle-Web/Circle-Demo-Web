@@ -18,8 +18,7 @@ export const chatKeywordTrigger = (keyword) => {
   const {username} = userInfo
   const {channelId, serverId} = currentChannelInfo
   const fromNickName = appUserInfo[username].nickname || username
-  http('post', 'http://121.37.205.80:3000/api/robot/chatKeywordTrigger', {
-    type: 1,
+  http('post', 'http://121.37.205.80/api/robot/chatKeywordTrigger', {
     keyword,
     fromNickName,
     serverId,
