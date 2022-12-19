@@ -2,7 +2,7 @@ import WebIM from "./Easemob-chat";
 // import WebIM from "easemob-websdk";
 
 WebIM.conn = new WebIM.connection({
-  appKey: process.env.REACT_APP_WEB_IM_APP_KEY,
+  appKey: '1111220807113509#discord',
   useOwnUploadFun: true
 });
 

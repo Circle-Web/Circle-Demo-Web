@@ -18,37 +18,37 @@ const PluginList = (props) => {
             {
                 logo: AppLogo,
                 name: '插件商店',
-                url: 'http://localhost:5174/ext/market',
+                url: 'http://localhost/dist/ext/market',
                 id: 1
             },
             {
                 logo: AppLogo,
                 name: '打卡',
-                url: 'http://localhost:5174/ext/reportShare',
+                url: 'http://localhost/dist/ext/reportShare',
                 id: 2
             },
             {
                 logo: AppLogo,
                 name: '每日签到',
-                url: 'http://localhost:5174/ext/sign',
+                url: 'http://localhost/dist/ext/sign',
                 id: 3
             },
             {
                 logo: AppLogo,
                 name: '机器人',
-                url: 'http://localhost:5174/ext/robot',
+                url: 'http://localhost/dist/ext/robot',
                 id: 4
             },
             {
                 logo: AppLogo,
                 name: '投票',
-                url: 'http://localhost:5174/ext/vote',
+                url: 'http://localhost/dist/ext/vote',
                 id: 5
             },
             {
                 logo: AppLogo,
                 name: '代码片段',
-                url: 'http://localhost:5174/ext/code',
+                url: 'http://localhost/dist/ext/code',
                 id: 6,
                 setting: {
                     width: '720px',
