@@ -15,40 +15,40 @@ const PluginList = (props) => {
 
     const [pluginList, setPluginList] = useState(
         [
-            {
-                logo: AppLogo,
-                name: '插件商店',
-                url: 'http://121.37.205.80/ext/market',
-                id: 1
-            },
+            // {
+            //     logo: AppLogo,
+            //     name: '插件商店',
+            //     url: 'http://121.37.205.80/ext/market',
+            //     id: 1
+            // },
             {
                 logo: AppLogo,
                 name: '打卡',
-                url: 'http://121.37.205.80/ext/reportShare',
+                url: 'http://121.37.205.80:4173/#/ext/reportShare',
                 id: 2
             },
             {
                 logo: AppLogo,
                 name: '每日签到',
-                url: 'http://121.37.205.80/ext/sign',
+                url: 'http://121.37.205.80:4173/#/ext/sign',
                 id: 3
             },
             {
                 logo: AppLogo,
                 name: '机器人',
-                url: 'http://121.37.205.80/ext/robot',
+                url: 'http://121.37.205.80:4173/#/ext/robot',
                 id: 4
             },
             {
                 logo: AppLogo,
                 name: '投票',
-                url: 'http://121.37.205.80/ext/vote',
+                url: 'http://121.37.205.80:4173/#/ext/vote',
                 id: 5
             },
             {
                 logo: AppLogo,
                 name: '代码片段',
-                url: 'http://121.37.205.80/ext/code',
+                url: 'http://121.37.205.80:4173/#/ext/code',
                 id: 6,
                 setting: {
                     width: '720px',
