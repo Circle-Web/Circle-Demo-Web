@@ -1,4 +1,3 @@
-import AppLogo from "@/assets/images/app_icon.png";
 import CloseIcon from "@/components/CloseIcon";
 import { openPlugin } from '@/components/Plugin/index';
 import React, { memo, useState } from "react";
@@ -22,31 +21,31 @@ const PluginList = (props) => {
             //     id: 1
             // },
             {
-                logo: AppLogo,
+                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/share.png",
                 name: '打卡',
                 url: 'http://121.37.205.80:4173/#/ext/reportShare',
                 id: 2
             },
             {
-                logo: AppLogo,
+                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/sign.png",
                 name: '每日签到',
                 url: 'http://121.37.205.80:4173/#/ext/sign',
                 id: 3
             },
             {
-                logo: AppLogo,
+                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/robot.png",
                 name: '机器人',
                 url: 'http://121.37.205.80:4173/#/ext/robot',
                 id: 4
             },
             {
-                logo: AppLogo,
+                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/vote.png",
                 name: '投票',
                 url: 'http://121.37.205.80:4173/#/ext/vote',
                 id: 5
             },
             {
-                logo: AppLogo,
+                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/code.png",
                 name: '代码片段',
                 url: 'http://121.37.205.80:4173/#/ext/code',
                 id: 6,

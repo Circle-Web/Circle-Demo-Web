@@ -1,15 +1,15 @@
-import React, { memo, useState, useEffect } from "react";
-import s from "./index.module.less";
 import HeaderWrap from "@/components/HeaderWrap";
 import Icon from "@/components/Icon";
-import { Popover, Menu, Tooltip } from "antd";
 import { USER_ROLE } from "@/consts";
-import ThreadList from "@/views/Thread/components/ThreadList";
-import PluginList from './pluginList'
+import { deleteLocalChannel } from "@/utils/common";
 import WebIM from "@/utils/WebIM";
+import ThreadList from "@/views/Thread/components/ThreadList";
+import { Menu, Popover, Tooltip } from "antd";
+import React, { memo, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteLocalChannel } from "@/utils/common"
+import s from "./index.module.less";
+import PluginList from './pluginList';
 
 const ChannelHeader = (props) => {
   const {
