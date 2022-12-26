@@ -35,7 +35,7 @@ const Message = (props) => {
     return reactionMap.get(message.id) || [];
   }, [reactionMap, message.id]);
 
-  //消息操作 撤回、复制
+  //消息操作 撤回、复制、翻译
   const handleOperation = (operation) => {
     onHandleOperation(operation, isThreadMessage, message);
   };

@@ -14,9 +14,9 @@ export const chatKeywordTrigger = (keyword) => {
   if (!judgeKeyword(keyword)) {
     return
   }
-  const {appUserInfo, userInfo, currentChannelInfo} = getState().app;
-  const {username} = userInfo
-  const {channelId, serverId} = currentChannelInfo
+  const { appUserInfo, userInfo, currentChannelInfo } = getState().app;
+  const { username } = userInfo
+  const { channelId, serverId } = currentChannelInfo
   const fromNickName = appUserInfo[username].nickname || username
   http('post', 'http://121.37.205.80/api/robot/chatKeywordTrigger', {
     keyword,
@@ -246,6 +246,17 @@ const recallMessage = (message, isChatThread = false) => {
       }
     }
   });
+};
+// 翻译消息
+const translateMessage = (message, isChatThread = false) => {
+  const { msg } = message;
+  http('post', 'http://121.37.205.80/api/im/translate/', {
+    q: msg,
+    from: 'en',
+    to: "zh",
+  }).then(res => {
+    alert(`翻译：${res.value?.dst}`)
+  })
 };
 
 const pasteHtmlAtCaret = (html, lastEditRange) => {
@@ -785,6 +796,7 @@ export {
   createMsg,
   deliverMsg,
   recallMessage,
+  translateMessage,
   pasteHtmlAtCaret,
   getThreadHistoryMessage,
   formatImFile,
