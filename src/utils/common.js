@@ -6,19 +6,20 @@ import { message as messageTip } from "antd";
 import moment from "moment";
 import store from "../store";
 import http from "./axios";
-import { judgeKeyword } from "./keyword";
-
+const ip = "121.37.205.80"
+// const ip = "localhost"
 const { dispatch, getState } = store;
 
 export const chatKeywordTrigger = (keyword) => {
-  if (!judgeKeyword(keyword)) {
-    return
-  }
+  // if (!judgeKeyword(keyword)) {
+  //   return
+  // }
   const { appUserInfo, userInfo, currentChannelInfo } = getState().app;
   const { username } = userInfo
   const { channelId, serverId } = currentChannelInfo
   const fromNickName = appUserInfo[username].nickname || username
-  http('post', 'http://121.37.205.80/api/robot/chatKeywordTrigger', {
+  http('post', `http://${ip}/api/robot/chatKeywordTrigger`, {
+    username,
     keyword,
     fromNickName,
     serverId,
@@ -250,7 +251,7 @@ const recallMessage = (message, isChatThread = false) => {
 // 翻译消息
 const translateMessage = (message, isChatThread = false) => {
   const { msg } = message;
-  http('post', 'http://121.37.205.80/api/im/translate/', {
+  http('post', `http://${ip}/api/im/translate/`, {
     q: msg,
     from: 'en',
     to: "zh",
