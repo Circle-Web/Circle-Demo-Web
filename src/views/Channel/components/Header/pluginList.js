@@ -3,6 +3,11 @@ import { openPlugin } from '@/components/Plugin/index';
 import React, { memo, useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import code from "@/assets/ext-icon/code.png";
+import robot from "@/assets/ext-icon/robot.png";
+import share from "@/assets/ext-icon/share.png";
+import sign from "@/assets/ext-icon/sign.png";
+import vote from "@/assets/ext-icon/vote.png";
 import s from "./plugin.module.less";
 
 const PLUGIN_STOP_ID = '__plugin__shop__id__'
@@ -21,31 +26,31 @@ const PluginList = (props) => {
             //     id: 1
             // },
             {
-                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/share.png",
+                logo: share,
                 name: '打卡',
                 url: 'http://121.37.205.80:4173/#/ext/reportShare',
                 id: 2
             },
             {
-                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/sign.png",
+                logo: sign,
                 name: '每日签到',
                 url: 'http://121.37.205.80:4173/#/ext/sign',
                 id: 3
             },
             {
-                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/robot.png",
+                logo: robot,
                 name: '机器人',
                 url: 'http://121.37.205.80:4173/#/ext/robot',
                 id: 4
             },
             {
-                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/vote.png",
+                logo: vote,
                 name: '投票',
                 url: 'http://121.37.205.80:4173/#/ext/vote',
                 id: 5
             },
             {
-                logo: "http://rmf3cjpb1.hn-bkt.clouddn.com/ext-icon/code.png",
+                logo: code,
                 name: '代码片段',
                 url: 'http://121.37.205.80:4173/#/ext/code',
                 id: 6,
